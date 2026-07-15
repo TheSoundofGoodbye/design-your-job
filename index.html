@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Elegant Registry | 에디토리얼 직업 큐레이터</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="평범한 일상의 직업을 극도로 세련된 보그 에디토리얼 톤의 칭호로 큐레이팅해 드립니다.">
+  <meta name="keywords" content="직업 변환기, 보그체, 에디토리얼 칭호, Elegant Job, Nvidia NIM, Llama 3">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- html2canvas for certificate image export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Minimal Ambient Backgrounds -->
+  <div class="ambient-glow ambient-glow-1"></div>
+  <div class="ambient-glow ambient-glow-2"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <span class="logo-text">THE ELEGANT REGISTRY</span>
+      </div>
+      <button class="btn-icon" id="openSettingsBtn" title="API 설정">
+        <i data-lucide="sliders"></i>
+      </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      <section class="intro-section">
+        <p class="subtitle">EDITORIAL JOB CURATOR</p>
+        <h2 class="main-title">평범함을 걷어내고,<br><span class="vogue-accent-text">감각적인 정체성</span>을 입히다</h2>
+        <p class="description">
+          세속의 건조한 직무 명칭 속에 숨겨진 고유의 낭만과 예술적 본질을 탐색합니다.<br>
+          당신의 기존 직업을 입력하시면, 세련된 보그 에디터의 시선으로 재탄생한 에디토리얼 타이틀을 선사합니다.
+        </p>
+      </section>
+
+      <!-- Input and Control Area -->
+      <section class="control-section glass-panel">
+        <div class="input-group">
+          <label for="originalJobInput" class="input-label">기존 직업명</label>
+          <div class="input-wrapper">
+            <input type="text" id="originalJobInput" placeholder="예: 백수, 청소부, 편의점 알바, 회사원..." autocomplete="off">
+            <button class="btn-primary" id="convertBtn">
+              <span>CURATE</span>
+              <i data-lucide="arrow-right" class="arrow-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Presets Quick Links -->
+        <div class="presets-area">
+          <span class="preset-label">SUGGESTIONS:</span>
+          <div class="presets-list">
+            <button class="btn-preset" data-job="백수">백수</button>
+            <button class="btn-preset" data-job="청소부">청소부</button>
+            <button class="btn-preset" data-job="편의점 알바">편의점 알바</button>
+            <button class="btn-preset" data-job="개발자">개발자</button>
+            <button class="btn-preset" data-job="취준생">취준생</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- API Key Status Bar -->
+      <div class="api-status-bar glass-panel" id="apiStatusBar">
+        <span class="status-indicator offline" id="statusIndicator"></span>
+        <span id="statusText">오프라인 감성 큐레이션 엔진 동작 중</span>
+      </div>
+
+      <!-- Loading State -->
+      <div class="loading-container hidden" id="loadingContainer">
+        <div class="loading-bar-wrapper">
+          <div class="loading-bar"></div>
+        </div>
+        <p class="loading-text">보그적 시선으로 삶의 질감을 분석하고 타이틀을 조율하는 중...</p>
+      </div>
+
+      <!-- Output Area: Vogue Style Cover Card -->
+      <section class="result-section hidden" id="resultSection">
+        <div class="certificate-wrapper-3d" id="certificateWrapper3d">
+          <div class="certificate-card" id="certificateCard">
+            <!-- Sleek Minimalist Border lines -->
+            <div class="card-inner-border"></div>
+
+            <div class="cert-header">
+              <div class="db-status-badge" id="certDbStatus">NEW RECORD</div>
+              <div class="magazine-issue">LIFESTYLE JOURNAL / ARCHIVE EDITION</div>
+              <div class="cert-header-title">THE ELEGANT</div>
+              <div class="cert-header-subtitle">EDITORIAL ESSENCE</div>
+            </div>
+
+            <div class="cert-body">
+              <div class="cert-job-mapping">
+                <div class="original-title-box">
+                  <span class="label">ORIGIN</span>
+                  <span class="value" id="certOriginalJob">백수</span>
+                </div>
+                <div class="noble-title-box">
+                  <span class="label">CURATED IDENTITY</span>
+                  <span class="value vogue-gradient-text" id="certNobleJob">Sabbatical Enjoyer</span>
+                </div>
+              </div>
+
+              <!-- Editorial Justification -->
+              <div class="cert-section-title">EDITORIAL PIECE</div>
+              <p class="cert-justification" id="certJustification">
+                "번잡한 일상의 그리드에서 과감하게 이탈하여 자신만의 정적인 템포를 큐레이팅하는 자유주의자. 그의 느긋한 호흡은 방황이 아닌 무한한 영감을 위한 세련된 비움이며, 삶이라는 빈 캔버스에 여백의 미학을 빚어내는 창조적 사색의 시간이다."
+              </p>
+
+              <!-- Editorial Keywords / Attributes -->
+              <div class="cert-section-title">ESSENTIAL ATTRIBUTES</div>
+              <ul class="cert-duties" id="certDuties">
+                <li>시간적 그리드를 탈피한 자유주의적 스케줄링</li>
+                <li>세상의 소음에서 벗어나 깊은 내면의 여백을 큐레이팅</li>
+                <li>무위(無爲)가 지닌 궁극의 예술적 가치 실현</li>
+              </ul>
+            </div>
+
+            <div class="cert-footer">
+              <div class="cert-signature-block">
+                <div class="signature-line">ELEGANT REGISTRY</div>
+                <span class="signature-label">CHIEF EDITOR</span>
+              </div>
+              <div class="cert-signature-block">
+                <div class="signature-line signature-styled" id="certDate">JULY 2026</div>
+                <span class="signature-label">RELEASED DATE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="actions-area">
+          <button class="btn-action btn-gold" id="downloadBtn">
+            <i data-lucide="download"></i>
+            <span>에디토리얼 커버 저장</span>
+          </button>
+          <button class="btn-action btn-outline" id="shareBtn">
+            <i data-lucide="share-2"></i>
+            <span>공유 링크 복사</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay hidden" id="settingsModal">
+      <div class="modal-content glass-panel animate-zoom">
+        <div class="modal-header">
+          <h2><i data-lucide="sliders" class="gold-icon"></i> NVIDIA NIM API 설정</h2>
+          <button class="btn-close" id="closeSettingsBtn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-desc">
+            NVIDIA Build의 하이엔드 인공지능 모델을 연동하여, 입력하신 모든 직업에 대해 감각적이고 세련된 에디토리얼 칼럼을 실시간으로 큐레이팅합니다.
+          </p>
+          
+          <div class="form-group">
+            <label for="apiKeyInput" class="form-label">
+              NVIDIA API Key 
+              <a href="https://build.nvidia.com" target="_blank" class="link-external">
+                API Key 발급 <i data-lucide="external-link"></i>
+              </a>
+            </label>
+            <input type="password" id="apiKeyInput" placeholder="nvapi-..." autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="modelSelect" class="form-label">NVIDIA NIM 모델</label>
+            <div class="select-wrapper">
+              <select id="modelSelect">
+                <option value="nvidia/llama-3.1-nemotron-70b-instruct" selected>nvidia/llama-3.1-nemotron-70b-instruct (강력 추천)</option>
+                <option value="meta/llama-3.3-70b-instruct">meta/llama-3.3-70b-instruct</option>
+                <option value="meta/llama-3.2-3b-instruct">meta/llama-3.2-3b-instruct</option>
+              </select>
+              <i data-lucide="chevron-down" class="select-arrow"></i>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-action btn-outline" id="clearApiBtn">설정 초기화</button>
+          <button class="btn-primary" id="saveSettingsBtn">설정 저장</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="app-footer">
+      <p>&copy; 2026 THE ELEGANT REGISTRY. POWERED BY NVIDIA NIM AI.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
