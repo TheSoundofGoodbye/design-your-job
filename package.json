@@ -1,0 +1,23 @@
+{
+  "name": "elegant-registry",
+  "version": "1.0.0",
+  "description": "The Elegant Registry project with automated testing and static analysis.",
+  "main": "app.js",
+  "scripts": {
+    "test": "node test_runner.js",
+    "lint:js": "eslint app.js",
+    "lint:css": "stylelint style.css",
+    "lint:html": "htmlhint index.html",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "predeploy": "git add -A && git commit --allow-empty -m \"chore: savepoint before deploy\"",
+    "deploy": "gh-pages -d ."
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "gh-pages": "^6.3.0",
+    "htmlhint": "^1.0.0",
+    "jsdom": "^22.1.0",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard": "^34.0.0"
+  }
+}
